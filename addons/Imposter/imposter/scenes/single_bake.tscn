@@ -1,0 +1,181 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfyj20c0bej3r"]
+
+[ext_resource type="Script" path="res://addons/Imposter/imposter/scripts/single_bake.gd" id="1_0ba82"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bgcij"]
+load_path = "res://.godot/imported/fold.svg-18bb14f67b2afcbb99199524ac1136ce.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kr73x"]
+load_path = "res://.godot/imported/fold_selected.svg-df209d0c29eaccfd25c6e84d68657be1.ctex"
+
+[sub_resource type="Environment" id="Environment_6wwrl"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ssil_enabled = true
+
+[sub_resource type="World3D" id="World3D_flfsy"]
+environment = SubResource("Environment_6wwrl")
+
+[node name="single" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_0ba82")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Selects" type="ScrollContainer" parent="HSplitContainer"]
+custom_minimum_size = Vector2(512, 0)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="VBoxContainer" parent="HSplitContainer/Selects"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Process" type="Button" parent="HSplitContainer/Selects/GridContainer"]
+layout_mode = 2
+text = "process node"
+
+[node name="FileName" type="HBoxContainer" parent="HSplitContainer/Selects/GridContainer"]
+layout_mode = 2
+
+[node name="FileNameLebal" type="Label" parent="HSplitContainer/Selects/GridContainer/FileName"]
+layout_mode = 2
+text = "file name"
+
+[node name="LineEdit" type="LineEdit" parent="HSplitContainer/Selects/GridContainer/FileName"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+placeholder_text = "set file name"
+
+[node name="Label" type="Label" parent="HSplitContainer/Selects/GridContainer"]
+layout_mode = 2
+text = "save dir"
+
+[node name="SaveDir" type="HBoxContainer" parent="HSplitContainer/Selects/GridContainer"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="HSplitContainer/Selects/GridContainer/SaveDir"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+placeholder_text = "Select model dir"
+clear_button_enabled = true
+
+[node name="SaveBut" type="TextureButton" parent="HSplitContainer/Selects/GridContainer/SaveDir"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+texture_normal = SubResource("CompressedTexture2D_bgcij")
+texture_pressed = SubResource("CompressedTexture2D_kr73x")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="FullSphereBut" type="CheckButton" parent="HSplitContainer/Selects/GridContainer"]
+layout_mode = 2
+text = "full sphere"
+
+[node name="ShadowBut" type="CheckButton" parent="HSplitContainer/Selects/GridContainer"]
+layout_mode = 2
+text = "create shadow mesh"
+
+[node name="FramesSize" type="HBoxContainer" parent="HSplitContainer/Selects/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HSplitContainer/Selects/GridContainer/FramesSize"]
+layout_mode = 2
+text = "frames size"
+
+[node name="FrameSpin" type="SpinBox" parent="HSplitContainer/Selects/GridContainer/FramesSize"]
+layout_mode = 2
+size_flags_horizontal = 10
+min_value = 4.0
+max_value = 64.0
+value = 16.0
+
+[node name="Resolution" type="HBoxContainer" parent="HSplitContainer/Selects/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HSplitContainer/Selects/GridContainer/Resolution"]
+layout_mode = 2
+text = "set resolution"
+
+[node name="ResolutionSpin" type="SpinBox" parent="HSplitContainer/Selects/GridContainer/Resolution"]
+layout_mode = 2
+size_flags_horizontal = 10
+min_value = 512.0
+max_value = 8192.0
+value = 1024.0
+
+[node name="Dilatate" type="HBoxContainer" parent="HSplitContainer/Selects/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HSplitContainer/Selects/GridContainer/Dilatate"]
+layout_mode = 2
+text = "dilatate bake distance"
+
+[node name="SpinBox" type="SpinBox" parent="HSplitContainer/Selects/GridContainer/Dilatate"]
+layout_mode = 2
+size_flags_horizontal = 10
+max_value = 64.0
+value = 32.0
+
+[node name="PreviewNodes" type="VBoxContainer" parent="HSplitContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/PreviewNodes"]
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="HSplitContainer/PreviewNodes/HBoxContainer"]
+custom_minimum_size = Vector2(1024, 0)
+layout_mode = 2
+
+[node name="Generate" type="Button" parent="HSplitContainer/PreviewNodes/HBoxContainer"]
+layout_mode = 2
+text = "generate"
+
+[node name="Preview" type="ScrollContainer" parent="HSplitContainer/PreviewNodes"]
+custom_minimum_size = Vector2(512, 512)
+layout_mode = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="HSplitContainer/PreviewNodes/Preview"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PreviewScenes" type="SubViewportContainer" parent="HSplitContainer/PreviewNodes/Preview/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Viewport" type="SubViewport" parent="HSplitContainer/PreviewNodes/Preview/BoxContainer/PreviewScenes"]
+world_3d = SubResource("World3D_flfsy")
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1024, 1024)
+render_target_update_mode = 4
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a Directory"
+initial_position = 4
+size = Vector2i(800, 600)
+ok_button_text = "选择当前文件夹"
+file_mode = 2
+
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+initial_position = 4
+size = Vector2i(200, 150)
+dialog_text = "Please select 3d node"
+
+[connection signal="pressed" from="HSplitContainer/Selects/GridContainer/Process" to="." method="_on_process_pressed"]
+[connection signal="text_changed" from="HSplitContainer/Selects/GridContainer/FileName/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="text_submitted" from="HSplitContainer/Selects/GridContainer/FileName/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="HSplitContainer/Selects/GridContainer/SaveDir/SaveBut" to="." method="_on_save_but_pressed"]
+[connection signal="toggled" from="HSplitContainer/Selects/GridContainer/FullSphereBut" to="." method="_on_full_sphere_but_toggled"]
+[connection signal="toggled" from="HSplitContainer/Selects/GridContainer/ShadowBut" to="." method="_on_shadow_but_toggled"]
+[connection signal="value_changed" from="HSplitContainer/Selects/GridContainer/FramesSize/FrameSpin" to="." method="_on_frame_spin_value_changed"]
+[connection signal="value_changed" from="HSplitContainer/Selects/GridContainer/Resolution/ResolutionSpin" to="." method="_on_resolution_spin_value_changed"]
+[connection signal="value_changed" from="HSplitContainer/Selects/GridContainer/Dilatate/SpinBox" to="." method="_on_spin_box_value_changed"]
+[connection signal="pressed" from="HSplitContainer/PreviewNodes/HBoxContainer/Generate" to="." method="_on_generate_pressed"]
+[connection signal="dir_selected" from="FileDialog" to="." method="_on_file_dialog_dir_selected"]

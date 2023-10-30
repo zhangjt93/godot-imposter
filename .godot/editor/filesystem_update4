@@ -1,0 +1,10 @@
+res://addons/Imposter/imposter/materials/shaders/ImpostorShader.gdshader
+res://addons/Imposter/imposter/materials/shaders/ImpostorShaderShadows.gdshader
+res://addons/Imposter/imposter/materials/normal_baker.gdshader
+res://addons/Imposter/imposter/materials/normal_baker.material
+res://addons/Imposter/imposter/materials/depth_baker.gdshader
+res://addons/Imposter/imposter/materials/depth_baker.material
+res://addons/Imposter/imposter/materials/orm_baker.gdshader
+res://addons/Imposter/imposter/materials/orm_baker.material
+res://addons/Imposter/imposter/materials/dilatate.gdshader
+res://arts/testtree.tscn

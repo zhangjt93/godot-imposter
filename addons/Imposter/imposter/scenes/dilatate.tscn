@@ -1,0 +1,82 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6601b4wn2mri"]
+
+[ext_resource type="Script" path="res://addons/Imposter/imposter/scripts/dilatate.gd" id="1_isphw"]
+
+[sub_resource type="Shader" id="Shader_o6sob"]
+code = "shader_type canvas_item;
+render_mode blend_premul_alpha;
+
+uniform sampler2D u_alpha_tex;
+uniform int u_distance = 16;
+uniform bool u_alpha_overwrite = true;
+
+
+vec4 dilate(sampler2D a_tex, sampler2D tex, vec2 coords, vec2 texel_size, int dist, float alpha_cutoff)
+{
+	//alpha纹理，纹理，uv坐标，纹理像素大小，膨胀像素距离，膨胀计算阈值
+	
+	//扩算偏移定点
+	vec2 offsets[8] = {
+		vec2(-1,0),vec2(1,0), vec2(0,1), vec2(0,-1), 
+		vec2(-1,1), vec2(1,1), vec2(1,-1), vec2(-1,-1)
+	};
+	//纹理采样，0代表最低精度的纹理采样
+	vec4 sample = textureLod(tex, coords, 0);
+	vec4 a_sample = textureLod(a_tex, coords, 0);
+	//判断需膨大纹理的alpha透明通道是否大于阈值，1为不透明，0为透明。。如果完全不透明直接返回。
+	if(a_sample.a > alpha_cutoff)
+		return sample;
+	//从0开始到扩散设置的扩散距离，每个单位的距离都要计算8个膨胀点
+	for(int curr_dist = 0; curr_dist < dist; curr_dist++)
+	{
+		for(int o = 0; o < 8; o++)
+		{
+			vec2 off_coords = offsets[o] * texel_size * float(curr_dist + 1);
+			vec4 off_sample = textureLod(tex, coords + off_coords, 0);
+			vec4 off_a_sample = textureLod(a_tex, coords + off_coords, 0);
+			//如果扩散的点的alpha纹理非完全不透明，不处理
+			if (off_a_sample.a > alpha_cutoff)
+			{
+				if(u_alpha_overwrite)
+					return off_sample;
+				else
+					//viewport will lose alpha rgb if alpha is below 0.5
+					//在alpha透明的位置，对周边8个方向的点位进行采样，如果可以采集到alpha贴图中不透明的纹理，就把透明位置设置为这个纹理
+					//制造边缘膨大的效果
+					
+					return vec4(off_sample.rgb, a_sample.a);
+			}
+			
+		}
+	}
+	return sample;
+}
+
+void fragment() {
+	//alpha纹理，纹理，uv坐标，纹理像素大小，膨胀像素距离，膨胀计算阈值
+    COLOR = dilate(u_alpha_tex, TEXTURE, UV, TEXTURE_PIXEL_SIZE, u_distance, 0.95);
+	//COLOR.a = 1.0;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qdqnj"]
+shader = SubResource("Shader_o6sob")
+shader_parameter/u_distance = 32
+shader_parameter/u_alpha_overwrite = false
+
+[node name="Dilatate" type="Node2D"]
+script = ExtResource("1_isphw")
+
+[node name="DilateViewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1024, 1024)
+size_2d_override = Vector2i(1024, 0)
+render_target_update_mode = 4
+
+[node name="tex" type="TextureRect" parent="DilateViewport"]
+material = SubResource("ShaderMaterial_qdqnj")
+custom_minimum_size = Vector2(4096, 4096)
+offset_right = 4096.0
+offset_bottom = 4096.0
+stretch_mode = 2
