@@ -1,2 +1,2 @@
-# godot-rpgbuilder
-rpg maker of 3d or 2d games
+# godot-imposter
+imposter plugin for godot 4.x
