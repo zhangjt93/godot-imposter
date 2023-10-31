@@ -12,6 +12,12 @@ Therefore, based on this project and taking into account the features of the god
 
 I would like to thank the original author for their work. I reused the shader code and made modifications specifically for the godot4.x version.
 
+
+# operating guide
+
+![image](https://github.com/zhangjt93/godot-imposter/blob/master/guide/741698737002_.pic.jpg)
+
+
 If you encounter any issues during use, please feel free to contact me.
 
 If you have any ideas or suggestions while using the project, I would also welcome your feedback and would be happy to communicate with you.
