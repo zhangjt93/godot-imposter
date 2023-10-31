@@ -14,10 +14,6 @@ config/name="Godot-Imposter"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://addons/Imposter/icons/imposter_icon.png"
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/Imposter/plugin.cfg")
-
 [filesystem]
 
 import/fbx/enabled=false
