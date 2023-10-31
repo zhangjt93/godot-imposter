@@ -71,13 +71,13 @@ func _on_process_pressed():
 
 	var sels = face.get_selection().get_selected_nodes()
 	if sels.size()!=1:
-		warin_dialog.dialog_text = 'Please select one node'
+		warin_dialog.dialog_text = 'select one node'
 		warin_dialog.popup_centered()
 		return
 	
 	var sel = sels[0]
 	if not sel is Node3D:
-		warin_dialog.dialog_text = 'Please select 3d node'
+		warin_dialog.dialog_text = 'select 3d node'
 		warin_dialog.popup_centered()
 		return
 	
