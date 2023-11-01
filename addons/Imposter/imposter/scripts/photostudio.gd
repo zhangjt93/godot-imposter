@@ -70,7 +70,7 @@ func bake():
 		
 	recover_materials(bake_scene)
 	dilatate.clean()
-	prepare_scene()
+	init_bake_scene()
 
 	
 	
@@ -166,6 +166,7 @@ func init_bake_scene():
 	
 	camera_distance_scaled = camera_distance / float(frame_size)
 	bake_camera.size = camera_distance
+	bake_camera.near = camera_distance_scaled/10.0
 	bake_camera.far = camera_distance_scaled * 2.0
 	bake_camera.global_transform.origin.z = camera_distance_scaled
 
