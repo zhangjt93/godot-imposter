@@ -230,10 +230,25 @@ func set_scene(node:Node3D):
 	init_studio()
 	view_port.render_target_update_mode=SubViewport.UPDATE_ALWAYS
 	bake_scene = node.duplicate()
+	check_mats(bake_scene)
 	prepare_scene()
 
 	
-	
+func check_mats(node:Node3D):
+	if node is MeshInstance3D:
+		var mats: int = node.get_surface_override_material_count()
+		for m in mats:
+			var original_mat = node.get_surface_override_material(m)
+			if original_mat==null:
+				original_mat=node.mesh.surface_get_material(m)
+				
+			if original_mat!=null and original_mat.subsurf_scatter_enabled:
+				var bake_mat:BaseMaterial3D = original_mat.duplicate(true)
+				bake_mat.subsurf_scatter_enabled=false
+				node.set_surface_override_material(m,bake_mat)
+			
+	for c in node.get_children():
+		check_mats(c)
 	
 	
 func export_texture(maper:MapBaker,image:Image,prefix:String):
