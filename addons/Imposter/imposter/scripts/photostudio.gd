@@ -309,6 +309,11 @@ func export_scene(mat: ShaderMaterial, texture_array: bool = false, shadow_mat: 
 			shadow_mat.set_shader_parameter("imposterTexture" + x.capitalize(), texture)
 
 	var quad_mesh: QuadMesh = QuadMesh.new()
+	# Set AABB to occlude properly
+	var aabb:AABB = get_max_aabb(bake_scene)
+	aabb.size *= 1.5
+	quad_mesh.custom_aabb = aabb
+	
 	root.add_child(mi)
 	root.name = "Impostor"
 	mi.owner = root
@@ -335,7 +340,7 @@ func export_scene(mat: ShaderMaterial, texture_array: bool = false, shadow_mat: 
 		print("Imposter ready!")
 	change_bar.emit(1)
 	return root
-	
+
 
 func all_resource_exists() -> bool:
 	for x in saved_maps:
@@ -349,16 +354,16 @@ func wait_on_resources() -> void:
 	print("Waiting for import to finish...")
 	for counter in saved_maps.size() * 2.0:
 		await get_tree().process_frame
-
+	
 	print("Waiting for resources on disk...")
 	while not all_resource_exists():
 		await get_tree().process_frame
 		await get_tree().process_frame
-
+	
 	print("Resource should now exists...")
 	for counter in saved_maps.size() * 2.0:
 		await get_tree().process_frame
-
+	
 	print("Waiting for correct texture loading")
 	for x in saved_maps:
 		wait_for_correct_load_texture(saved_maps[x])
