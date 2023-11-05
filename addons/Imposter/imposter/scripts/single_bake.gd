@@ -132,7 +132,7 @@ func _on_frame_spin_value_changed(value):
 func _on_resolution_spin_value_changed(value):
 	resolution=int(value)
 	photo_sdudio.resolution=resolution
-	photo_sdudio.init_bake_scene()
+#	photo_sdudio.init_bake_scene()
 	photo_sdudio.prepare_scene()
 
 

@@ -62,7 +62,7 @@ layout_mode = 2
 [node name="LineEdit" type="LineEdit" parent="HSplitContainer/Selects/GridContainer/SaveDir"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
-placeholder_text = "Select model dir"
+placeholder_text = "Select save dir"
 clear_button_enabled = true
 
 [node name="SaveBut" type="TextureButton" parent="HSplitContainer/Selects/GridContainer/SaveDir"]

@@ -19,6 +19,7 @@ const base_shader = "res://addons/Imposter/imposter/materials/shaders/ImpostorSh
 const shadow_shader = "res://addons/Imposter/imposter/materials/shaders/ImpostorShaderShadows.gdshader"
 
 signal saved
+signal bake_finished
 signal change_bar(bar:int)
 
 var is_full_sphere:bool=false
@@ -71,6 +72,7 @@ func bake():
 	recover_materials(bake_scene)
 	dilatate.clean()
 	init_bake_scene()
+	bake_finished.emit()
 
 	
 	
