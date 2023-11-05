@@ -14,9 +14,11 @@ I would like to thank the original author for their work. I reused the shader co
 
 
 # operating guide
-
+single:
 ![image](https://github.com/zhangjt93/godot-imposter/blob/master/guide/741698737002_.pic.jpg)
-
+batch:
+![image](https://github.com/zhangjt93/godot-imposter/blob/master/guide/batch_20231105.jpg)
+It will recursively read through the resources in the files, only processing files whose filenames end with tscn.
 
 If you encounter any issues during use, please feel free to contact me.
 
