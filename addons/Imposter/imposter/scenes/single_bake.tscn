@@ -1,12 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://cfyj20c0bej3r"]
 
 [ext_resource type="Script" path="res://addons/Imposter/imposter/scripts/single_bake.gd" id="1_0ba82"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bgcij"]
-load_path = "res://.godot/imported/fold.svg-18bb14f67b2afcbb99199524ac1136ce.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kr73x"]
-load_path = "res://.godot/imported/fold_selected.svg-df209d0c29eaccfd25c6e84d68657be1.ctex"
+[ext_resource type="Texture2D" uid="uid://dsq0fpt5c8ic7" path="res://addons/Imposter/icons/fold.svg" id="2_uj55j"]
+[ext_resource type="Texture2D" uid="uid://vexri24bb4xr" path="res://addons/Imposter/icons/fold_selected.svg" id="3_lu3jy"]
 
 [sub_resource type="Environment" id="Environment_6wwrl"]
 ambient_light_source = 2
@@ -68,8 +64,8 @@ clear_button_enabled = true
 [node name="SaveBut" type="TextureButton" parent="HSplitContainer/Selects/GridContainer/SaveDir"]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
-texture_normal = SubResource("CompressedTexture2D_bgcij")
-texture_pressed = SubResource("CompressedTexture2D_kr73x")
+texture_normal = ExtResource("2_uj55j")
+texture_pressed = ExtResource("3_lu3jy")
 ignore_texture_size = true
 stretch_mode = 5
 

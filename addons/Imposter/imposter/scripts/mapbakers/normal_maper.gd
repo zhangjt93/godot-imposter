@@ -35,7 +35,7 @@ func _mimic_original_spatial_material(original_mat: BaseMaterial3D, material: Sh
 #	if original_mat.params_use_alpha_scissor:
 	if original_mat.transparency==BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR:
 		material.set_shader_parameter("use_alpha_texture", true)
-		material.set_shader_parameter("alpha_scissor_threshold", original_mat.params_alpha_scissor_threshold)
+		material.set_shader_parameter("alpha_scissor_threshold", original_mat.alpha_scissor_threshold)
 		material.set_shader_parameter("texture_albedo", original_mat.albedo_texture)
 
 
