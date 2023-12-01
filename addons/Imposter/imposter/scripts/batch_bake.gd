@@ -12,8 +12,7 @@ extends Control
 var save_dir:String=""
 var bake_dir:String=""
 
-var plugin:EditorPlugin
-var face:EditorInterface
+#var plugin:EditorPlugin
 var photo_sdudio:PhotoStudio 
 
 var is_full_sphere:bool=false
@@ -25,9 +24,7 @@ var temp_bar:int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
-	plugin = EditorPlugin.new()
-	face = plugin.get_editor_interface()
+	#plugin = EditorPlugin.new()
 	photo_sdudio = Studio.instantiate()
 	viewport.add_child(photo_sdudio)
 #	var world3d=World3D.new()
@@ -48,7 +45,8 @@ func init_photo_studio():
 	photo_sdudio.resolution=resolution
 	photo_sdudio.frame_size=frame_size
 	photo_sdudio.view_port=viewport
-	photo_sdudio.plugin=plugin
+	#photo_sdudio.plugin=plugin
+	photo_sdudio.plugin = EditorPlugin.new()
 	photo_sdudio.set_dilatate_distance(dilatate_distance)
 	photo_sdudio.connect('change_bar',Callable(self,'change_bar_value'))
 	

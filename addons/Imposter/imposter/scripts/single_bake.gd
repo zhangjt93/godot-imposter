@@ -8,8 +8,12 @@ extends Control
 @onready var filename = $HSplitContainer/Selects/GridContainer/FileName/LineEdit
 @onready var viewport = $HSplitContainer/PreviewNodes/Preview/BoxContainer/PreviewScenes/Viewport
 @onready var Studio = preload("res://addons/Imposter/imposter/scenes/photostudio.tscn")
+
+#region godot 4.2+ ,variables can be deleted
 var plugin:EditorPlugin
-var face:EditorInterface
+var interface:EditorInterface
+#endregion
+
 var photo_sdudio:PhotoStudio 
 
 var save_path:String
@@ -25,8 +29,10 @@ var temp_bar:int
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
+#region godot 4.2+ ,variables can be deleted
 	plugin = EditorPlugin.new()
-	face = plugin.get_editor_interface()
+	interface = plugin.get_editor_interface()
+#endregion
 	photo_sdudio = Studio.instantiate()
 	viewport.add_child(photo_sdudio)
 #	var world3d=World3D.new()
@@ -48,7 +54,10 @@ func init_photo_studio():
 	photo_sdudio.frame_size=frame_size
 	photo_sdudio.view_port=viewport
 	photo_sdudio.base_filename=filename.text
+#region godot 4.2+ use the following line of code,Delete variable plugin and interface
 	photo_sdudio.plugin=plugin
+	#photo_sdudio.plugin=EditorPlugin.new()
+#endregion
 	photo_sdudio.set_dilatate_distance(dilatate_distance)
 	photo_sdudio.connect('change_bar',Callable(self,'change_bar_value'))
 	
@@ -69,7 +78,11 @@ func _on_generate_pressed():
 
 func _on_process_pressed():
 
-	var sels = face.get_selection().get_selected_nodes()
+#region godot 4.2+ use the following line of code
+	var sels = interface.get_selection().get_selected_nodes()
+	#var sels = EditorInterface.get_selection().get_selected_nodes()
+#endregion
+
 	if sels.size()!=1:
 		warin_dialog.dialog_text = 'select one node'
 		warin_dialog.popup_centered()

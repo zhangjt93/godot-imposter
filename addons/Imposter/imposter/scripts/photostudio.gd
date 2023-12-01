@@ -36,7 +36,9 @@ var bake_scene:Node3D=null
 var width:int
 var material_cache = {}
 var saved_maps={}
+#region godot 4.2+ this variable can be deleted
 var plugin:EditorPlugin
+#endregion
 
 
 func get_max_bar_value()->int:
@@ -378,7 +380,11 @@ func wait_for_correct_load_texture(path: String) -> void:
 		await get_tree().process_frame
 #
 func rescan_filesystem():
+#region godot 4.2+ use the following line of code
 	var plugin_filesystem = plugin.get_editor_interface().get_resource_filesystem()
+	#var plugin_filesystem = EditorInterface.get_resource_filesystem()
+#endregion
+
 	plugin_filesystem.scan()
 	print("Scanning filesystem...")
 	await get_tree().process_frame
