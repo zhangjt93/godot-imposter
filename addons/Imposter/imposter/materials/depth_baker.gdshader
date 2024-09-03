@@ -7,7 +7,9 @@ uniform sampler2D DEPTH_TEXTURE:hint_depth_texture,filter_linear_mipmap;
 varying mat4 CAMERA;
 void vertex() {
 
-	POSITION = vec4(VERTEX, 1.0);
+	//POSITION = vec4(VERTEX, 1.0);
+	//godot4.3 update : Reverse Z
+	POSITION = PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0);
 	CAMERA = INV_VIEW_MATRIX;
 }
 

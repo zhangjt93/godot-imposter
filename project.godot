@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Godot-Imposter"
-config/features=PackedStringArray("4.1", "Forward Plus")
+config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://addons/Imposter/icons/imposter_icon.png"
 
 [filesystem]
