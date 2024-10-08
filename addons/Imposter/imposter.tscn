@@ -3,10 +3,22 @@
 [ext_resource type="Script" path="res://addons/Imposter/imposter.gd" id="1_op0f2"]
 
 [node name="imposter" type="PanelContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(512, 200)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 331.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 10
 script = ExtResource("1_op0f2")
 
 [node name="TabContainer" type="TabContainer" parent="."]
-custom_minimum_size = Vector2(2048, 512)
+clip_contents = true
+custom_minimum_size = Vector2(799, 200)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+current_tab = 0
 drag_to_rearrange_enabled = true
 use_hidden_tabs_for_min_size = true

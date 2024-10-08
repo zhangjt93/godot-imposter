@@ -12,24 +12,31 @@ ssil_enabled = true
 [sub_resource type="World3D" id="World3D_flfsy"]
 environment = SubResource("Environment_6wwrl")
 
-[node name="single" type="Control"]
-layout_mode = 3
-anchors_preset = 0
+[node name="single" type="ScrollContainer"]
+custom_minimum_size = Vector2(400, 300)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 300.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_0ba82")
 
 [node name="HSplitContainer" type="HSplitContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+clip_contents = true
+custom_minimum_size = Vector2(512, 300)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Selects" type="ScrollContainer" parent="HSplitContainer"]
-custom_minimum_size = Vector2(512, 0)
+custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
-horizontal_scroll_mode = 0
 
 [node name="GridContainer" type="VBoxContainer" parent="HSplitContainer/Selects"]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(200, 300)
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Process" type="Button" parent="HSplitContainer/Selects/GridContainer"]
 layout_mode = 2
@@ -56,14 +63,16 @@ text = "save dir"
 layout_mode = 2
 
 [node name="LineEdit" type="LineEdit" parent="HSplitContainer/Selects/GridContainer/SaveDir"]
-custom_minimum_size = Vector2(400, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 placeholder_text = "Select save dir"
 clear_button_enabled = true
 
 [node name="SaveBut" type="TextureButton" parent="HSplitContainer/Selects/GridContainer/SaveDir"]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_horizontal = 0
 texture_normal = ExtResource("2_uj55j")
 texture_pressed = ExtResource("3_lu3jy")
 ignore_texture_size = true
@@ -75,10 +84,12 @@ text = "full sphere"
 
 [node name="ShadowBut" type="CheckButton" parent="HSplitContainer/Selects/GridContainer"]
 layout_mode = 2
+size_flags_horizontal = 5
 text = "create shadow mesh"
 
 [node name="FramesSize" type="HBoxContainer" parent="HSplitContainer/Selects/GridContainer"]
 layout_mode = 2
+size_flags_horizontal = 5
 
 [node name="Label" type="Label" parent="HSplitContainer/Selects/GridContainer/FramesSize"]
 layout_mode = 2
@@ -93,6 +104,7 @@ value = 16.0
 
 [node name="Resolution" type="HBoxContainer" parent="HSplitContainer/Selects/GridContainer"]
 layout_mode = 2
+size_flags_horizontal = 5
 
 [node name="Label" type="Label" parent="HSplitContainer/Selects/GridContainer/Resolution"]
 layout_mode = 2
@@ -107,6 +119,7 @@ value = 1024.0
 
 [node name="Dilatate" type="HBoxContainer" parent="HSplitContainer/Selects/GridContainer"]
 layout_mode = 2
+size_flags_horizontal = 5
 
 [node name="Label" type="Label" parent="HSplitContainer/Selects/GridContainer/Dilatate"]
 layout_mode = 2
@@ -119,29 +132,41 @@ max_value = 64.0
 value = 32.0
 
 [node name="PreviewNodes" type="VBoxContainer" parent="HSplitContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(400, 300)
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/PreviewNodes"]
+clip_contents = true
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
 [node name="ProgressBar" type="ProgressBar" parent="HSplitContainer/PreviewNodes/HBoxContainer"]
-custom_minimum_size = Vector2(1024, 0)
+clip_contents = true
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
 
 [node name="Generate" type="Button" parent="HSplitContainer/PreviewNodes/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
 text = "generate"
 
 [node name="Preview" type="ScrollContainer" parent="HSplitContainer/PreviewNodes"]
-custom_minimum_size = Vector2(512, 512)
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="BoxContainer" type="BoxContainer" parent="HSplitContainer/PreviewNodes/Preview"]
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="PreviewScenes" type="SubViewportContainer" parent="HSplitContainer/PreviewNodes/Preview/BoxContainer"]
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -156,7 +181,7 @@ render_target_update_mode = 4
 title = "Open a Directory"
 initial_position = 4
 size = Vector2i(800, 600)
-ok_button_text = "选择当前文件夹"
+ok_button_text = "Select Current Folder"
 file_mode = 2
 
 [node name="AcceptDialog" type="AcceptDialog" parent="."]
